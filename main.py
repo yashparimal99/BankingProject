@@ -33,7 +33,6 @@ while status:
     try:
         print("1. Account Details")
         print("2. Transaction History")
-        print("2. Transaction History")
         print("3. Balance Enquiry")
         print("4. Cash Deposit")
         print("5. Cash Withdraw")
