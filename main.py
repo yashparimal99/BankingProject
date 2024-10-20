@@ -9,12 +9,13 @@ print("Welcome to Yash Banking Project\n")
 while True:
 
     try:
-        print("Choose your Option \n 1. SignUp \n 2. SignIn \n")
+        print("Choose your Banking Option \n 1. SignUp \n 2. SignIn \n")
         register = int(input("Choose Banking Option  : "))
         if register == 1 or register == 2:
             if register == 1:
                 SignUp()
             if register == 2:
+            
                 user = SignIn()
                 status = True
                 break
@@ -28,31 +29,37 @@ account_number = db_query(
     f"SELECT account_number FROM bank_customers WHERE username = '{user}';")
 
 while status:
-    print(f"Welcome {user.capitalize()} Choose Your Banking Service\n")
+    print(f"-----Welcome {user.capitalize()} Choose Your Banking Service-----\n")
     try:
-        facility = int(input("1. Account Details\n"
-                             "2. Balance Enquiry\n"
-                             "3. Cash Deposit\n"
-                             "4. Cash Withdraw\n"
-                             "5. Fund Transfer\n"
-                             "6. Exit\n "
-                             ))
-        if facility >= 1 and facility <= 6:
+        print("1. Account Details")
+        print("2. Transaction History")
+        print("2. Transaction History")
+        print("3. Balance Enquiry")
+        print("4. Cash Deposit")
+        print("5. Cash Withdraw")
+        print("6. Fund Transfer")
+        print("7. Exit\n")
+         
+
+
+        facility = int(input("Choose Banking Facility  "))
+        if facility >= 1 and facility <= 7:
 
              if facility == 1:
                 bobj = Bank(user, account_number[0][0])
                 bobj.custprofile()
 
-           
+             if facility == 2:
+                 bobj = Bank(user, account_number[0][0])
+                 bobj.history()
                
-           
-             elif facility == 2:
+             elif facility == 3:
                 bobj = Bank(user, account_number[0][0])
                 bobj.balanceequiry()
-             elif facility == 3:
+             elif facility == 4:
                 while True:
                     try:
-                        amount = int(input("Enter Amount to Deposit"))
+                        amount = int(input("Enter Amount to Deposit  "))
                         bobj = Bank(user, account_number[0][0])
                         bobj.deposit(amount)
                         mydb.commit()
@@ -62,10 +69,10 @@ while status:
                         print("Enter Valid Input ie. Number")
                         continue
 
-             elif facility == 4:
+             elif facility == 5:
                 while True:
                     try:
-                        amount = int(input("Enter Amount to Withdraw"))
+                        amount = int(input("Enter Amount to Withdraw  "))
                         bobj = Bank(user, account_number[0][0])
                         bobj.withdraw(amount)
                         mydb.commit()
@@ -73,10 +80,10 @@ while status:
                     except ValueError:
                         print("Enter Valid Input ie. Number")
                         continue
-             elif facility == 5:
+             elif facility == 6:
                 while True:
                     try:
-                        receive = int(input("Enter Receiver Account Number"))
+                        receive = int(input("Enter Receiver Account Number  "))
                         amount = int(input("Enter Money to Transfer"))
                         bobj = Bank(user, account_number[0][0])
                         bobj.fundtransfer(receive, amount)
@@ -91,7 +98,7 @@ while status:
                  
             
                
-             elif facility == 6:
+             elif facility == 7:
                 print("Thanks For Using Banking Services")
                 status = False
                 print("\n--------------------------------------------")

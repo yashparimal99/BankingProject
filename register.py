@@ -44,7 +44,8 @@ def SignIn():
             temp = db_query(f"SELECT password FROM bank_customers where username = '{username}';")
             # print(temp[0][0])
             if temp[0][0] == password:
-                print("Sign IN Succesfully")
+                print("Sign IN Succesfully\n")
+                print("-------------------------------------\n")
                 return username
             else:
                 print("Wrong Password Try Again")

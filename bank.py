@@ -2,6 +2,7 @@
 from database import *
 import datetime
 import random
+from tabulate import tabulate
 
 
 class Bank:
@@ -35,12 +36,20 @@ class Bank:
             print(f"Card Number : {temp[0][7]}")
 
             print("-----------------------------------------------")
-            # print(f"Password : {self.__password}")
-            # print(f"Name: {self.__name}")
-            # print(f"Account Number : {self.__account_number}")
+            
         else:
             print("Account details not availabe")
  
+    def history(self):
+
+         temp = db_query(
+            f"SELECT * FROM {self.__username}_transaction WHERE account_number = '{self.__account_number}';")
+         if temp:
+             headers = ["Date Time", "Account Number", "Remark", "Amount"]
+             table_data = [list(row) for row in temp]
+             print(tabulate(table_data, headers, tablefmt="pretty"))
+         
+
 
     def balanceequiry(self):
         temp = db_query(
